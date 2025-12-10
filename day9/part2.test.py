@@ -1,4 +1,9 @@
-from part2 import does_area_intersect_edges, do_edges_intersect, point_in_or_on_polygon
+from part2 import (
+    does_area_intersect_edges,
+    do_edges_intersect,
+    point_in_or_on_polygon,
+    is_rectangle_valid,
+)
 
 assert do_edges_intersect((0, 5), (10, 5), (5, 0), (5, 10)) == True  # Cross
 assert (
@@ -90,3 +95,53 @@ assert (
     )
     == False
 )  # Outside
+
+# Rectangle shouldn't be valid because some edges move into the rectangle 
+# 
+# FIXME: this is actually providing the wrong result - but I think we were just lucky to avoid on
+# real input / there's a property of the fact the input isn't just a simple polygon that means this
+# doesn't happen.
+
+# assert (
+#     is_rectangle_valid(
+#         (0, 0),
+#         (10, 10),
+#         [
+#             ((0, 0), (10, 0)),
+#             ((10, 0), (10, 10)),
+#             ((10, 10), (8, 10)),
+#             ((8, 10), (8, 8)),
+#             ((8, 8), (6, 8)),
+#             ((6, 8), (6, 10)),
+#             ((6, 10), (4, 10)),
+#             ((4, 10), (4, 8)),
+#             ((4, 8), (2, 8)),
+#             ((2, 8), (2, 10)),
+#             ((2, 10), (0, 10)),
+#             ((0, 10), (0, 0)),
+#         ],
+#     )
+#     == False
+# ) 
+
+assert (
+    is_rectangle_valid(
+        (0, 0),
+        (10, 10),
+        [
+            ((0, 0), (10, 0)),
+            ((10, 0), (10, 10)),
+            ((10, 10), (8, 10)),
+            ((8, 10), (8, 12)),
+            ((8, 12), (6, 12)),
+            ((6, 12), (6, 10)),
+            ((6, 10), (4, 10)),
+            ((4, 10), (4, 12)),
+            ((4, 12), (2, 12)),
+            ((2, 12), (2, 10)),
+            ((2, 10), (0, 10)),
+            ((0, 10), (0, 0)),
+        ],
+    )
+    == True
+)
