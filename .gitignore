@@ -1,6 +1,8 @@
 # Stop including inputs
 input.txt
 example.txt
+example1.txt
+example2.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
